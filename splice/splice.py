@@ -3,8 +3,9 @@
 # imports
 import json
 import itertools
-import plotly.graph_objects as go
-
+import plotly.graph_objs as go
+from splicers import * # FIX THIS!
+from colors import *
 
 class Splice(object):
     
@@ -36,10 +37,7 @@ class Splice(object):
         self.slices = list(self._get_slices())
         
         # flat ui colors
-        if colors:
-            self.colors = {slc: self.df.loc[]}
-        with open('flat_ui_colors.json', 'r') as f:
-            self.colors = json.load(f)
+        self.colors = get_color_blob()
         self.color_map = make_rgba_color_map(self.slices, seed=111)
         
         # update trace colors with flat ui, group and format legend
