@@ -1,5 +1,9 @@
 # subclasses of Splice for specific plot types
 
+# imports
+import plotly.graph_objs as go
+from splice import Splice
+
 
 class Lines(Splice):
     '''spliced version of plotly.graph_objs.Scatter with mode='lines'
