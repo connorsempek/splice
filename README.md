@@ -7,7 +7,7 @@ Plot multiple slices of data in plotly (more easily).
 * update traces method
 * drop_attr method which performs an update by removing an attribute
 * access trace list as attribute
-* annotation methods, expecially in bar charts
+* annotation methods, especially in bar charts
 * break up splicer functions
 * method to return traces indexed by name (might be useful)
 * add points/lines e.g. add y=3 line, and allow to add by date or categorical point too

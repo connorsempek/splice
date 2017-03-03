@@ -79,13 +79,29 @@ class Splice(object):
     
     
     def subplots(self, cols=None, ordering=None, **kwargs):
+        '''makes subplots for each val in traces.keys()
         
-        self.subplot_figure = make_subplots(
+        Parameters
+        ----------
+        cols     : (int) number of columns in the array of subplots
+        ordering : (list) complete list of idx values, the order of which determines the 
+                   order (left to right, top to bottom) the subplots will be displayed
+        **kwargs : plotly.tools.make_subplots keyword arguments
+        
+        Returns
+        -------
+        plotly Figure with subplot data, and layout object matched to the state of 
+        self.layout at runtime
+        '''
+        
+        fig = make_subplots(
             traces=self.traces, cols=cols, ordering=ordering, **kwargs)
         
+        # make sure current layout is
         for k, v in self.layout.items():
-            if k not in self.subplot_figure['layout'].keys():
-                self.subplot_figure['layout'][k] = v
+            if k not in fig['layout'].keys():
+                fig['layout'][k] = v
+        return fig
         
     
     def _get_slices(self):
@@ -95,6 +111,8 @@ class Splice(object):
         
     
     def _update_trace_attrs(self):
+        '''default trace attributes that I think are most pleasing
+        '''
         
         legend_keys = set([])
         for idx, trace_list in self.traces.items():
@@ -113,4 +131,32 @@ class Splice(object):
                 else:
                     trace.update({'legendgroup': name})
                     legend_keys.add(name)
+
+
+    def update_traces(self, names=None, **attrs):
+        '''update trace attributes after object instantiation
+        
+        Parameters
+        ----------
+        names: (list) list of trace names to update, defaults to updating all traces
+        '''
+        
+        for idx, trace_list in self.traces.items(): 
+            for trace in trace_list:
+                    
+                name = trace['name']
+                if names:
+                    if name in set(names):
+                        trace.update({k: v for k, v in attrs.items()})
+                else:
+                    trace.update({k: v for k, v in attrs.items()})
+                    
+                if 'xaxis' in trace.keys():
+                    del trace['xaxis']
+                
+                if 'yaxis' in trace.keys():
+                    del trace['yaxis']
+        
+        self._set_layout()
+        self._set_figure()
                     
