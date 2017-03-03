@@ -102,6 +102,22 @@ class Splice(object):
             if k not in fig['layout'].keys():
                 fig['layout'][k] = v
         return fig
+
+
+    def buttons(self, **kwargs):
+        '''makes a figure with a dropdown menu
+        
+        Parameters
+        ----------
+        **kwargs: plotly dropdownmenu keyword arguments 
+        '''
+        
+        buttons = make_buttons(self.traces)
+        layout = self.layout
+        layout.update({'updatemenus':[{'buttons':buttons}]})
+        fig = self.figure
+        fig['layout'] = layout
+        return fig
         
     
     def _get_slices(self):
@@ -113,7 +129,7 @@ class Splice(object):
     def _update_trace_attrs(self):
         '''default trace attributes that I think are most pleasing
         '''
-        
+
         legend_keys = set([])
         for idx, trace_list in self.traces.items():
             for trace in trace_list:
