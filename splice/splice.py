@@ -9,7 +9,7 @@ from colors import *
 
 class Splice(object):
     
-    def __init__(self, df, plot_func, x, y, slice_by, idx, hover_text, 
+    def __init__(self, df, plot_func, x, y, slice_by=None, idx=None, hover_text=None, 
                  color=None, group_legend=True, **kwargs):
         
         # instantiate parameters to class attributes
