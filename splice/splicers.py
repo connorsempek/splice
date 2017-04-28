@@ -44,7 +44,7 @@ def _spliced_traces(df, x, y,  plot_func, agg='sum',
     if filter_by:
         filter_mask = True
         for filter_col, filter_vals in filter_by.items():
-            filter_mask = filter_mask & df[filter_col].isin(filter_vals)
+            filter_mask = (filter_mask) & (df[filter_col].isin(filter_vals))
         df = df[filter_mask]
 
     # generate all possible slices
@@ -71,7 +71,7 @@ def _spliced_traces(df, x, y,  plot_func, agg='sum',
 
         slice_mask = [True] * df.shape[0]
         for col_name, col_val in zip(slice_by, tup):
-            slice_mask = slice_mask & (df[col_name] == col_val)
+            slice_mask = (slice_mask) & (df[col_name] == col_val)
         sliced_df = df[slice_mask].groupby(grp_cols)[agg_cols].agg(agg).reset_index()
         
         if not sliced_df.empty:
@@ -97,7 +97,7 @@ def _spliced_traces(df, x, y,  plot_func, agg='sum',
             
             traces.append(trace)
             
-    return sorted(traces)
+    return sorted(traces, key=lambda d: d['name'])
 
 
 def spliced_traces(df, x, y, plot_func, 
