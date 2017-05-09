@@ -139,8 +139,9 @@ class Splice(object):
                 name = trace['name']
                 
                 # update color
-                if 
-                color = self.color_map[tuple(name.split('|'))]
+                color = '#2ECC71'
+                if self.slices:
+                    color = self.color_map[tuple(name.split('|'))]
                 marker = {'color': color}
                 trace.update({'marker': marker})
                 
