@@ -18,21 +18,29 @@ def get_color_blob():
 
 def make_hex_color_map(slices, seed=None):
     
-    if not slices:
-        slices = [0]
-    random.seed(seed)
+    
     blob = get_color_blob()
-    idx = random.sample(range(len(slices)), len(slices))
     hexes = [d['hex'] for d in blob['all'].values()]
-    return {slc: hexes[idx[i]] for i, slc in enumerate(slices)}
+    
+    if not slices:
+        res = hexes[0]
+    else:
+        random.seed(seed)
+        idx = random.sample(range(len(slices)), len(slices))
+        res = {slc: hexes[idx[i]] for i, slc in enumerate(slices)}
+    return res
 
 
 def make_rgba_color_map(slices, seed=None):
     
-    if not slices:
-        slices = [0]
-    random.seed(seed)
+
     blob = get_color_blob()
-    idx = random.sample(range(len(slices)), len(slices))
     rgbas = [d['rgba'] for d in blob['all'].values()]
-    return {slc: rgbas[idx[i]] for i, slc in enumerate(slices)} 
+    
+    if not slices:
+        res = rgbas[0]
+    else:
+        random.seed(seed)
+        idx = random.sample(range(len(slices)), len(slices))
+        res = {slc: rgbas[idx[i]] for i, slc in enumerate(slices)}
+    return res
