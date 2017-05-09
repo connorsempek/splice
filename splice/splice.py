@@ -34,7 +34,11 @@ class Splice(object):
             **self.kwargs)
         
         # get slices
-        self.slices = list(self._get_slices())
+        self.slices = None
+        if self.slice_by:
+            self.slices = list(self._get_slices())
+        else:
+            self.slices = [self.df]
         
         # flat ui colors
         self.colors = get_color_blob()
@@ -175,4 +179,9 @@ class Splice(object):
         
         self._set_layout()
         self._set_figure()
-                    
+
+
+
+if __name__ == '__main__':
+
+    print 'sup doe'
