@@ -18,6 +18,8 @@ def get_color_blob():
 
 def make_hex_color_map(slices, seed=None):
     
+    if not slices:
+        slices = [0]
     random.seed(seed)
     blob = get_color_blob()
     idx = random.sample(range(len(slices)), len(slices))
@@ -27,6 +29,8 @@ def make_hex_color_map(slices, seed=None):
 
 def make_rgba_color_map(slices, seed=None):
     
+    if not slices:
+        slices = [0]
     random.seed(seed)
     blob = get_color_blob()
     idx = random.sample(range(len(slices)), len(slices))
