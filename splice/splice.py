@@ -97,7 +97,8 @@ class Splice(object):
         '''
         
         fig = make_subplots(
-            traces=self.traces, cols=cols, ordering=ordering, **kwargs)
+            traces=self.traces, cols=cols, ordering=ordering, 
+            shared_xaxes=True, shared_xaxes=True, **kwargs)
         
         # make sure current layout is
         for k, v in self.layout.items():
