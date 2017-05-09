@@ -37,8 +37,6 @@ class Splice(object):
         self.slices = None
         if self.slice_by:
             self.slices = list(self._get_slices())
-        else:
-            self.slices = [self.df]
         
         # flat ui colors
         self.colors = get_color_blob()
@@ -141,6 +139,7 @@ class Splice(object):
                 name = trace['name']
                 
                 # update color
+                if 
                 color = self.color_map[tuple(name.split('|'))]
                 marker = {'color': color}
                 trace.update({'marker': marker})
