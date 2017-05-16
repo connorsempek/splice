@@ -6,5 +6,6 @@ setup(name='splice',
       author='Connor Sempek',
       author_email='cpsempek@gmail.com',
       license='MIT',
-      packages=['splice']
+      packages=['splice'],
+      package_data={'': ['flat_ui_colors.json']}
      )
