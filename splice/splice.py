@@ -185,4 +185,4 @@ class Splice(object):
 
 if __name__ == '__main__':
 
-    print 'sup doe'
+    print('sup doe')
